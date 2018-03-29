@@ -43,8 +43,13 @@ export const getUserList = params => ({
   params: params,
   types: actionTypes,
   // handle result
-  handleResult: res => res.data.list
+  handleResult: res => res.data.list,
+  // handle error
+  handleError: ...
 })
+
+// you can just dispatch the ation
+dispatch(getUserList({ page: 1 }))
 ```
 
 3. reducer
@@ -61,6 +66,12 @@ const initialUserList = {
   list: []
 }
 
+// the userList state will turn to {
+//   list: [],
+//   loading: false,
+//   error: null
+// }
+// and will auto change the 'loading' and 'error' value when GET_SUCCESS and GET_FAILED
 const userList = userListCreator(initialUserList, (state, action => {
   switch(action.type) {
     case GET_SUCCESS:
