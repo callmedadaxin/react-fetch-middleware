@@ -1,0 +1,25 @@
+{
+  "name": "react-fetch-middleware",
+  "version": "1.0.0",
+  "description": "a library to simplify fetching and managing network state for Redux",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/callmedadaxin/react-fetch-middleware.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "fetch",
+    "middleware"
+  ],
+  "author": "athon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/callmedadaxin/react-fetch-middleware/issues"
+  },
+  "homepage": "https://github.com/callmedadaxin/react-fetch-middleware#readme"
+}
