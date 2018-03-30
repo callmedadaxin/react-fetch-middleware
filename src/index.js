@@ -2,43 +2,46 @@
  * @Author: wangweixin@threatbook.cn 
  * @Date: 2018-03-29 16:33:18 
  * @Last Modified by: wangweixin@threatbook.cn
- * @Last Modified time: 2018-03-29 17:12:40
+ * @Last Modified time: 2018-03-30 10:42:12
  */
-export const reducerCreator = actionTypes => (initState, otherActions) => {
-  const resultInitState = Object.assign({}, initState, {
+
+/**
+ * 返回高阶reducer
+ * 自动处理START,SUCCESS,FAILED type的actions
+ * 将loading，error自动包含到状态中并自动更新
+ * @param {*} actionTypes 
+ */
+export const reducerCreator = actionTypes => (reducer) => {
+  const initialState = {
+    ...reducer(undefined, {}),
     loading: false,
     error: null
-  })
+  }
   const [ START, SUCCESS, FAILED ] = actionTypes
 
-  return (state = resultInitState, action) => {
-    let ret
+  return (state = initialState, action) => {
+    const retState = reducer(state, action)
     switch (action.type) {
       case START:
-        ret = {
-          ...state,
+        return {
+          ...retState,
           loading: action.loading,
           error: null,
         }
-        break
       case SUCCESS:
-        ret = {
-          ...state,
+        return {
+          ...retState,
           loading: action.loading
         }
-        break
       case FAILED:
-        ret = {
-          ...state,
+        return {
+          ...retState,
           loading: action.loading,
           error: action.error
         }
-        break
       default:
-        ret = state
+        return retState
     }
-
-    return otherActions(ret, action)
   }
 }
 

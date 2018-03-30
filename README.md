@@ -55,24 +55,25 @@ dispatch(getUserList({ page: 1 }))
 3. reducer
 
 ``` js
+import { combineReducers } from 'redux'
 import { reducerCreator } from 'redux-fetch-middleware'
 import { actionTypes } from './action'
 
 const [ GET, GET_SUCCESS, GET_FAILED ] = actionTypes
-
-const userListCreator = reducerCreator(actionTypes)
-
-const initialUserList = {
-  list: []
-}
 
 // the userList state will turn to {
 //   list: [],
 //   loading: false,
 //   error: null
 // }
-// and will auto change the 'loading' and 'error' value when GET_SUCCESS and GET_FAILED
-const userList = userListCreator(initialUserList, (state, action => {
+// and will auto change the 'loading' and 'error' value when GET, GET_SUCCESS and GET_FAILED
+const fetchedUserList = reducerCreator(actionTypes)
+
+const initialUserList = {
+  list: []
+}
+
+const userList = (state = initialUserList, action => {
   switch(action.type) {
     case GET_SUCCESS:
       return {
@@ -82,5 +83,7 @@ const userList = userListCreator(initialUserList, (state, action => {
   }
 })
 
-// ...
+export default combineReducers({
+  userList: fetchedUserList(userList)
+})
 ```
