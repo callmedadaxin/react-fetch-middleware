@@ -2,7 +2,7 @@
  * @Author: wangweixin@threatbook.cn 
  * @Date: 2018-03-29 16:33:18 
  * @Last Modified by: wangweixin@threatbook.cn
- * @Last Modified time: 2018-03-30 10:42:12
+ * @Last Modified time: 2018-03-30 14:54:30
  */
 
 /**
@@ -75,7 +75,7 @@ const applyFetchMiddleware = (
       loading: true,
       ...action
     })
-    fetchMethod(url, params)
+    return fetchMethod(url, params)
       .then(handleResponse)
       .then(ret => {
         next({

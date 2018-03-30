@@ -1,10 +1,11 @@
 {
-  "name": "react-fetch-middleware",
+  "name": "redux-data-fetch-middleware",
   "version": "1.0.0",
   "description": "a library to simplify fetching and managing network state for Redux",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src --out-dir dist"
   },
   "repository": {
     "type": "git",
@@ -16,10 +17,16 @@
     "fetch",
     "middleware"
   ],
-  "author": "athon",
+  "author": "helloathon",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/callmedadaxin/react-fetch-middleware/issues"
   },
-  "homepage": "https://github.com/callmedadaxin/react-fetch-middleware#readme"
+  "homepage": "https://github.com/callmedadaxin/react-fetch-middleware#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  }
 }

@@ -1,4 +1,4 @@
-# redux-fetch-middleware
+# redux-data-fetch-middleware
 
 A library to simplify fetching and managing network state for Redux
 
@@ -7,7 +7,7 @@ A library to simplify fetching and managing network state for Redux
 1. apply middleware
 
 ``` js
-import createFetchMiddleware from 'redux-fetch-middleware'
+import createFetchMiddleware from 'redux-data-fetch-middleware'
 import { applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 
@@ -33,7 +33,7 @@ applyMiddleware(...middlewares)
 2. actions
 
 ``` js
-import { actionCreator } from 'redux-fetch-middleware'
+import { actionCreator } from 'redux-data-fetch-middleware'
 
 // create action types
 export const actionTypes = actionCreator('GET_USER_LIST')
@@ -56,7 +56,7 @@ dispatch(getUserList({ page: 1 }))
 
 ``` js
 import { combineReducers } from 'redux'
-import { reducerCreator } from 'redux-fetch-middleware'
+import { reducerCreator } from 'redux-data-fetch-middleware'
 import { actionTypes } from './action'
 
 const [ GET, GET_SUCCESS, GET_FAILED ] = actionTypes
