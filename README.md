@@ -1,6 +1,12 @@
 # redux-data-fetch-middleware
 
-A library to simplify fetching and managing network state for Redux
+A library to simplify fetching and managing network state for Redux which based on redux-thunk
+
+## Install
+
+```
+npm i redux-data-fetch-middleware --save
+```
 
 ## Example
 
@@ -87,3 +93,8 @@ export default combineReducers({
   userList: fetchedUserList(userList)
 })
 ```
+
+## Live Example
+One boilerplate for React Which contains redux-data-fetch-middleware:
+
+[react-isomorphic-boilerplate](https://github.com/callmedadaxin/react-isomorphic-boilerplate)

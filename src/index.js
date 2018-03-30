@@ -2,7 +2,7 @@
  * @Author: wangweixin@threatbook.cn 
  * @Date: 2018-03-29 16:33:18 
  * @Last Modified by: wangweixin@threatbook.cn
- * @Last Modified time: 2018-03-30 14:54:30
+ * @Last Modified time: 2018-03-30 15:15:31
  */
 
 /**
@@ -83,6 +83,7 @@ const applyFetchMiddleware = (
           loading: false,
           payload: handleResult(ret)
         })
+        return handleResult(ret)
       })
       .catch(error => {
         next({
