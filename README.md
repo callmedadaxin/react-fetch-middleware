@@ -54,8 +54,24 @@ export const getUserList = params => ({
   handleError: ...
 })
 
+// if you want to getCurrent state, you can use the Redux-thunk's features
+export const getUserList = params => (dispatch, getState) => {
+  // you can get state and do anything you want here
+  return dispatch ({
+    url: '/api/userList',
+    params: params,
+    types: actionTypes,
+    // handle result
+    handleResult: res => res.data.list,
+    // handle error
+    handleError: ...
+  })
+}
+
 // you can just dispatch the ation
-dispatch(getUserList({ page: 1 }))
+dispatch(getUserList({ page: 1 })).then(ret => {
+  // you can get the result after request
+})
 ```
 
 3. reducer

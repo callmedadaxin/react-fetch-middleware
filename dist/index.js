@@ -12,7 +12,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
  * @Author: wangweixin@threatbook.cn 
  * @Date: 2018-03-29 16:33:18 
  * @Last Modified by: wangweixin@threatbook.cn
- * @Last Modified time: 2018-03-30 14:54:30
+ * @Last Modified time: 2018-04-03 15:55:00
  */
 
 /**
@@ -110,6 +110,7 @@ var applyFetchMiddleware = function applyFetchMiddleware() {
             loading: false,
             payload: handleResult(ret)
           });
+          return handleResult(ret);
         }).catch(function (error) {
           next({
             type: FAILED,
