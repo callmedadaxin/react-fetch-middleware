@@ -12,7 +12,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
  * @Author: wangweixin@threatbook.cn 
  * @Date: 2018-03-29 16:33:18 
  * @Last Modified by: wangweixin@threatbook.cn
- * @Last Modified time: 2018-04-03 15:55:00
+ * @Last Modified time: 2018-05-08 15:52:54
  */
 
 /**
@@ -21,6 +21,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
  * 将loading，error自动包含到状态中并自动更新
  * @param {*} actionTypes 
  */
+
+var stop = function stop() {
+  return new Promise(function () {});
+};
 var reducerCreator = exports.reducerCreator = function reducerCreator(actionTypes) {
   return function (reducer) {
     var initialState = _extends({}, reducer(undefined, {}), {
@@ -77,6 +81,9 @@ var applyFetchMiddleware = function applyFetchMiddleware() {
   var handleResponse = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (val) {
     return val;
   };
+  var handleErrorTotal = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function (error) {
+    return error;
+  };
   return function (store) {
     return function (next) {
       return function (action) {
@@ -104,7 +111,7 @@ var applyFetchMiddleware = function applyFetchMiddleware() {
           type: START,
           loading: true
         }, action));
-        return fetchMethod(url, params).then(handleResponse).then(function (ret) {
+        return fetchMethod(url, params, action.upload).then(handleResponse).catch(handleErrorTotal).then(function (ret) {
           next({
             type: SUCCESS,
             loading: false,

@@ -2,7 +2,7 @@
  * @Author: wangweixin@threatbook.cn 
  * @Date: 2018-03-29 16:33:18 
  * @Last Modified by: wangweixin@threatbook.cn
- * @Last Modified time: 2018-04-03 15:55:00
+ * @Last Modified time: 2018-05-08 15:52:54
  */
 
 /**
@@ -11,6 +11,10 @@
  * 将loading，error自动包含到状态中并自动更新
  * @param {*} actionTypes 
  */
+
+const stop = () => {
+  return new Promise(() => { })
+}
 export const reducerCreator = actionTypes => (reducer) => {
   const initialState = {
     ...reducer(undefined, {}),
@@ -57,7 +61,8 @@ export const actionCreator = name => [name, `${name}_SUCCESS`, `${name}_FAILED`]
  */
 const applyFetchMiddleware = (
   fetchMethod = fetch,
-  handleResponse = val => val
+  handleResponse = val => val,
+  handleErrorTotal = error => error
 ) =>
   store => next => action => {
     if (!action.url || !Array.isArray(action.types)) {
@@ -75,8 +80,9 @@ const applyFetchMiddleware = (
       loading: true,
       ...action
     })
-    return fetchMethod(url, params)
+    return fetchMethod(url, params, action.upload)
       .then(handleResponse)
+      .catch(handleErrorTotal)
       .then(ret => {
         next({
           type: SUCCESS,
